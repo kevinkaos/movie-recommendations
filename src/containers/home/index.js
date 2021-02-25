@@ -6,55 +6,56 @@ import {
   increment,
   incrementAsync,
   decrement,
-  decrementAsync
+  decrementAsync,
 } from '../../modules/counter'
+import { getConfig } from '../../modules/reducers'
 
-const Home = props => (
-  <div>
-    <h1>Home</h1>
-    <p>Count: {props.count}</p>
+const Home = (props) => {
+  return (
+    <div>
+      <h1>Home</h1>
+      <p>Count: {props.count}</p>
 
-    <p>
-      <button onClick={props.increment}>Increment</button>
-      <button onClick={props.incrementAsync} disabled={props.isIncrementing}>
-        Increment Async
-      </button>
-    </p>
+      <p>
+        <button onClick={props.increment}>Increment</button>
+        <button onClick={props.incrementAsync} disabled={props.isIncrementing}>
+          Increment Async
+        </button>
+      </p>
 
-    <p>
-      <button onClick={props.decrement}>Decrement</button>
-      <button onClick={props.decrementAsync} disabled={props.isDecrementing}>
-        Decrement Async
-      </button>
-    </p>
+      <p>
+        <button onClick={props.decrement}>Decrement</button>
+        <button onClick={props.decrementAsync} disabled={props.isDecrementing}>
+          Decrement Async
+        </button>
+      </p>
 
-    <p>
-      <button onClick={() => props.changePage()}>
-        Go to about page via redux
-      </button>
-    </p>
-  </div>
-)
+      <p>
+        <button onClick={() => props.changePage()}>
+          Go to about page via redux
+        </button>
+      </p>
+    </div>
+  )
+}
 
 const mapStateToProps = ({ counter }) => ({
   count: counter.count,
   isIncrementing: counter.isIncrementing,
-  isDecrementing: counter.isDecrementing
+  isDecrementing: counter.isDecrementing,
 })
 
-const mapDispatchToProps = dispatch =>
+const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       increment,
       incrementAsync,
       decrement,
       decrementAsync,
-      changePage: () => push('/about-us')
+      getConfig,
+      changePage: () => push('/about-us'),
     },
     dispatch
   )
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)
