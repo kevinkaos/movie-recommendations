@@ -6,12 +6,12 @@ const initialState = {
   config: {},
 }
 
-export default (state = initialState.config, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case GET_CONFIG:
       return {
         ...state,
-        images: action.config.images,
+        config: action.payload,
       }
     default:
       return state
@@ -23,7 +23,7 @@ export const getConfig = () => {
     callApi.configuration.getApiConfig().then((res) => {
       dispatch({
         type: GET_CONFIG,
-        config: res.data,
+        payload: res.data.images,
       })
     })
   }

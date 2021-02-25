@@ -8,41 +8,49 @@ import {
   decrement,
   decrementAsync,
 } from '../../modules/counter'
-import { getConfig } from '../../modules/reducers'
 
-const Home = (props) => {
+const Home = ({
+  config,
+  count,
+  increment,
+  incrementAsync,
+  isIncrementing,
+  decrement,
+  decrementAsync,
+  isDecrementing,
+  changePage,
+}) => {
   return (
     <div>
       <h1>Home</h1>
-      <p>Count: {props.count}</p>
+      <p>Count: {count}</p>
 
       <p>
-        <button onClick={props.increment}>Increment</button>
-        <button onClick={props.incrementAsync} disabled={props.isIncrementing}>
+        <button onClick={increment}>Increment</button>
+        <button onClick={incrementAsync} disabled={isIncrementing}>
           Increment Async
         </button>
       </p>
 
       <p>
-        <button onClick={props.decrement}>Decrement</button>
-        <button onClick={props.decrementAsync} disabled={props.isDecrementing}>
+        <button onClick={decrement}>Decrement</button>
+        <button onClick={decrementAsync} disabled={isDecrementing}>
           Decrement Async
         </button>
       </p>
-
+      <pre>{JSON.stringify(config, undefined, 2)}</pre>
       <p>
-        <button onClick={() => props.changePage()}>
-          Go to about page via redux
-        </button>
+        <button onClick={() => changePage()}>Go to about page via redux</button>
       </p>
     </div>
   )
 }
 
-const mapStateToProps = ({ counter }) => ({
+const mapStateToProps = ({ reducers, counter }) => ({
   count: counter.count,
   isIncrementing: counter.isIncrementing,
   isDecrementing: counter.isDecrementing,
+  config: reducers.config,
 })
 
 const mapDispatchToProps = (dispatch) =>
@@ -52,7 +60,6 @@ const mapDispatchToProps = (dispatch) =>
       incrementAsync,
       decrement,
       decrementAsync,
-      getConfig,
       changePage: () => push('/about-us'),
     },
     dispatch
