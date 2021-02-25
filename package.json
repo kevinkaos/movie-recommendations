@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "connected-react-router": "4.5.0",
+    "node-sass": "4.14.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-redux": "5.1.2",
@@ -23,6 +24,7 @@
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
     "sanitize.css": "11.0.1",
+    "sass": "^1.32.8",
     "serve": "10.1.2"
   },
   "browserslist": [
