@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { push } from 'connected-react-router'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -8,6 +8,8 @@ import {
   decrement,
   decrementAsync,
 } from '../../modules/counter'
+import Hero from '../../components/Hero'
+import { getPopularMovies } from '../../modules/movies'
 
 const Home = ({
   config,
@@ -19,9 +21,16 @@ const Home = ({
   decrementAsync,
   isDecrementing,
   changePage,
+  popularMovies,
+  getPopularMovies,
 }) => {
+  useEffect(() => {
+    getPopularMovies()
+  }, [])
+
   return (
     <div>
+      <Hero movies={popularMovies.slice(0, 5)} />
       <h1>Home</h1>
       <p>Count: {count}</p>
 
@@ -46,11 +55,12 @@ const Home = ({
   )
 }
 
-const mapStateToProps = ({ reducers, counter }) => ({
+const mapStateToProps = ({ reducers, counter, movies }) => ({
   count: counter.count,
   isIncrementing: counter.isIncrementing,
   isDecrementing: counter.isDecrementing,
   config: reducers.config,
+  popularMovies: movies.popularMovies,
 })
 
 const mapDispatchToProps = (dispatch) =>
@@ -60,6 +70,7 @@ const mapDispatchToProps = (dispatch) =>
       incrementAsync,
       decrement,
       decrementAsync,
+      getPopularMovies,
       changePage: () => push('/about-us'),
     },
     dispatch
