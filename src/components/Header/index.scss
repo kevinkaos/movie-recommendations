@@ -18,14 +18,14 @@
         font-weight: 600;
 
         .menu-link {
-          color: rgba($color: white, $alpha: 0.75);
+          color: rgba($color: white, $alpha: 0.5);
           text-decoration: none;
           text-transform: uppercase;
           position: relative;
           padding-bottom: 0.35rem;
 
           &:hover {
-            color: rgba($color: white, $alpha: 0.5);
+            color: rgba($color: white, $alpha: 0.75);
           }
 
           &::before {
