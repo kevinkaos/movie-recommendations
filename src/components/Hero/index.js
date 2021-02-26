@@ -19,8 +19,10 @@ const HeroNextArrow = ({ onClick }) => (
 
 const Hero = ({
   movies,
-  config: { backdrop_sizes, secure_base_url: imageBaseUrl },
+  config: { backdrop_sizes = [], secure_base_url: imageBaseUrl },
 }) => {
+  const imageSize =
+    window.innerWidth > 780 ? backdrop_sizes[3] : backdrop_sizes[1]
   const sliderSettings = {
     className: 'hero-container',
     dots: false,
@@ -32,7 +34,10 @@ const Hero = ({
 
   const slides = movies.map((movie) => (
     <div key={movie.id}>
-      <img src={`${imageBaseUrl}/original/${movie.backdrop_path}`} alt="" />
+      <img
+        src={`${imageBaseUrl}/${imageSize}/${movie.backdrop_path}`}
+        alt="movies-carousel-list"
+      />
     </div>
   ))
   return slides.length && <Slider {...sliderSettings}>{slides}</Slider>

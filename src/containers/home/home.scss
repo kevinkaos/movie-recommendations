@@ -5,6 +5,26 @@
 
   .content-section {
     margin: 0 auto;
-    width: 70%;
+    width: 75rem;
+
+    .content-section-container {
+      display: flex;
+      flex-wrap: wrap;
+
+      .movie {
+        flex-basis: 25%;
+
+        .movie-medium {
+          width: 100%;
+
+          img {
+            max-width: 100%;
+            height: auto;
+            vertical-align: middle;
+            display: block;
+          }
+        }
+      }
+    }
   }
 }
