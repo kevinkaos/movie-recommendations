@@ -21,7 +21,6 @@ export default (state = initialState, action) => {
 export const getPopularMovies = () => {
   return (dispatch) => {
     callApi.movie.getMovies().then((res) => {
-      console.log(res)
       dispatch({
         type: GET_POPULAR_MOVIES,
         payload: res.data.results,

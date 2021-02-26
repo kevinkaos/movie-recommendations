@@ -3,7 +3,7 @@ import Slider from 'react-slick'
 import { connect } from 'react-redux'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
-import './index.scss'
+import './hero.scss'
 
 const HeroPrevArrow = ({ onClick }) => (
   <i onClick={onClick} className="slick-arrow slick-prev material-icons">
@@ -22,8 +22,8 @@ const Hero = ({
   config: { backdrop_sizes, secure_base_url: imageBaseUrl },
 }) => {
   const sliderSettings = {
-    className: 'container',
-    dots: true,
+    className: 'hero-container',
+    dots: false,
     infinite: true,
     lazyLoad: true,
     nextArrow: <HeroNextArrow />,
@@ -32,7 +32,7 @@ const Hero = ({
 
   const slides = movies.map((movie) => (
     <div key={movie.id}>
-      <img src={`${imageBaseUrl}/w1280/${movie.backdrop_path}`} alt="" />
+      <img src={`${imageBaseUrl}/original/${movie.backdrop_path}`} alt="" />
     </div>
   ))
   return slides.length && <Slider {...sliderSettings}>{slides}</Slider>

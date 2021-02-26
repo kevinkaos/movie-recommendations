@@ -1,5 +1,5 @@
 import React from 'react'
-import './index.scss'
+import './header.scss'
 import { NavLink, withRouter } from 'react-router-dom'
 
 const Header = ({ history }) => {

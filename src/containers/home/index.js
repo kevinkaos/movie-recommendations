@@ -10,6 +10,7 @@ import {
 } from '../../modules/counter'
 import Hero from '../../components/Hero'
 import { getPopularMovies } from '../../modules/movies'
+import './home.scss'
 
 const Home = ({
   config,
@@ -29,28 +30,32 @@ const Home = ({
   }, [])
 
   return (
-    <div>
+    <div className="page">
       <Hero movies={popularMovies.slice(0, 5)} />
-      <h1>Home</h1>
-      <p>Count: {count}</p>
+      <div className="content-section">
+        <h1>Home</h1>
+        <p>Count: {count}</p>
 
-      <p>
-        <button onClick={increment}>Increment</button>
-        <button onClick={incrementAsync} disabled={isIncrementing}>
-          Increment Async
-        </button>
-      </p>
+        <p>
+          <button onClick={increment}>Increment</button>
+          <button onClick={incrementAsync} disabled={isIncrementing}>
+            Increment Async
+          </button>
+        </p>
 
-      <p>
-        <button onClick={decrement}>Decrement</button>
-        <button onClick={decrementAsync} disabled={isDecrementing}>
-          Decrement Async
-        </button>
-      </p>
-      <pre>{JSON.stringify(config, undefined, 2)}</pre>
-      <p>
-        <button onClick={() => changePage()}>Go to about page via redux</button>
-      </p>
+        <p>
+          <button onClick={decrement}>Decrement</button>
+          <button onClick={decrementAsync} disabled={isDecrementing}>
+            Decrement Async
+          </button>
+        </p>
+        <pre>{JSON.stringify(config, undefined, 2)}</pre>
+        <p>
+          <button onClick={() => changePage()}>
+            Go to about page via redux
+          </button>
+        </p>
+      </div>
     </div>
   )
 }
