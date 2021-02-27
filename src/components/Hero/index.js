@@ -20,6 +20,13 @@ const Hero = ({
 
   const slides = movies.map((movie) => (
     <div key={movie.id}>
+      <div className="carousel-info-container">
+        <div className="carousel-info">
+          <h2 className="title">{movie.title}</h2>
+          <p className="overview">{`${movie.overview.substr(0, 150)}...`}</p>
+          <div className="read-more-link">Read more</div>
+        </div>
+      </div>
       <img
         src={`${imageBaseUrl}/${imageSize}/${movie.backdrop_path}`}
         alt="movies-carousel-list"
