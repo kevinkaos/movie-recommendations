@@ -5,6 +5,18 @@ import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import './hero.scss'
 
+const HeroPrevArrow = (props) => (
+  <span onClick={props.onClick} className="slick-arrow prev material-icons">
+    arrow_back_ios
+  </span>
+)
+
+const HeroNextArrow = (props) => (
+  <span onClick={props.onClick} className="slick-arrow next material-icons">
+    arrow_forward_ios
+  </span>
+)
+
 const Hero = ({
   movies,
   config: { backdrop_sizes = [], secure_base_url: imageBaseUrl },
@@ -16,6 +28,8 @@ const Hero = ({
     dots: false,
     infinite: true,
     lazyLoad: true,
+    nextArrow: <HeroNextArrow />,
+    prevArrow: <HeroPrevArrow />,
   }
 
   const slides = movies.map((movie) => (
