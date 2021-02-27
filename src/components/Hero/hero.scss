@@ -2,6 +2,11 @@
   position: relative;
   overflow: hidden;
   max-height: 40rem;
+  margin-bottom: 4rem;
+
+  @media screen and (max-width: 768px) {
+    margin-bottom: 1rem;
+  }
 
   .slick-slide div {
     outline: none;
