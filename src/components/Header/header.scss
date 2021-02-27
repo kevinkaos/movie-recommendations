@@ -14,7 +14,7 @@
       display: flex;
 
       .menu-item {
-        padding: 0.2rem 1rem;
+        padding: 0.35rem 1rem;
         font-weight: 600;
 
         .menu-link {
@@ -22,7 +22,7 @@
           text-decoration: none;
           text-transform: uppercase;
           position: relative;
-          padding-bottom: 0.35rem;
+          padding-bottom: 0.6rem;
 
           &:hover {
             color: rgba($color: white, $alpha: 0.75);
