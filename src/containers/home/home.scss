@@ -13,6 +13,36 @@
 
       .movie {
         flex-basis: 25%;
+        position: relative;
+        overflow: hidden;
+        background: black;
+
+        .movie-info {
+          display: flex;
+          position: absolute;
+          bottom: 0;
+          transform: translateY(100%);
+          transition: transform 0.5s cubic-bezier(0.15, 1, 0.33, 1);
+          padding: 0.75rem;
+          color: white;
+          width: 100%;
+          text-align: center;
+
+          .movie-title {
+            margin: 0 auto;
+          }
+        }
+
+        &:hover {
+          img {
+            opacity: 0.5;
+            transform: scale(1.1);
+          }
+
+          .movie-info {
+            transform: translateY(0);
+          }
+        }
 
         .movie-medium {
           width: 100%;
@@ -22,6 +52,10 @@
             height: auto;
             vertical-align: middle;
             display: block;
+
+            &:hover {
+              transition: transform 0.5s cubic-bezier(0.15, 1, 0.33, 1);
+            }
           }
         }
       }

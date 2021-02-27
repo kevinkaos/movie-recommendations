@@ -28,6 +28,9 @@ const Home = ({
                   alt="movies-list"
                 />
               </div>
+              <div className="movie-info">
+                <h2 className="movie-title">{movie.title}</h2>
+              </div>
             </div>
           ))}
         </div>
