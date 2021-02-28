@@ -18,6 +18,39 @@
       max-width: 56rem;
     }
 
+    .movie-type {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      width: 100%;
+      flex: 0 100%;
+      margin-bottom: 2rem;
+      margin-top: 2rem;
+
+      ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        border: 1px solid #fff;
+        border-radius: 4px;
+
+        li {
+          display: inline-block;
+          padding: 6px 15px;
+          color: #fff;
+          font-size: 11px;
+          cursor: pointer;
+          user-select: none;
+          border-right: 1px solid #fff;
+
+          &.active {
+            background: #fff;
+            color: #000;
+          }
+        }
+      }
+    }
+
     .content-section-container {
       display: flex;
       flex-wrap: wrap;

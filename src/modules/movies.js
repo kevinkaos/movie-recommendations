@@ -1,28 +1,28 @@
 import callApi from '../api/apis'
 
-export const GET_POPULAR_MOVIES = 'GET_POPULAR_MOVIES'
+export const GET_MOVIES = 'GET_MOVIES'
 
 const initialState = {
-  popularMovies: [],
+  movies: [],
 }
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_POPULAR_MOVIES:
+    case GET_MOVIES:
       return {
         ...state,
-        popularMovies: action.payload,
+        movies: action.payload,
       }
     default:
       return state
   }
 }
 
-export const getPopularMovies = () => {
+export const getMovies = (type = 'popular') => {
   return (dispatch) => {
-    callApi.movie.getMovies().then((res) => {
+    callApi.movie.getMovies(type).then((res) => {
       dispatch({
-        type: GET_POPULAR_MOVIES,
+        type: GET_MOVIES,
         payload: res.data.results,
       })
     })

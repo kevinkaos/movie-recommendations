@@ -16,7 +16,7 @@ const Header = ({ history }) => {
               to="/"
               className="menu-link"
               activeClassName="active">
-              Popular
+              Movies
             </NavLink>
           </div>
           <div className="menu-item">
