@@ -1,20 +1,24 @@
-import React, { useEffect, useState } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import Hero from '../../components/Hero'
-import { getMovies } from '../../modules/movies'
-import './home.scss'
+import React, { useEffect, useState } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+// import Hero from '../../components/Hero';
+import { getMovies } from '../../modules/movies';
+import './home.scss';
+import Fade from 'react-reveal/Fade';
 
 const Home = ({
-  config: { backdrop_sizes: imageSizes = [], secure_base_url: imageBaseUrl },
+  config: {
+    backdrop_sizes: imageSizes = [],
+    secure_base_url: imageBaseUrl,
+  },
   movies,
   getMovies,
 }) => {
-  const [type, setType] = useState('popular')
+  const [type, setType] = useState('popular');
 
   useEffect(() => {
-    getMovies(type)
-  }, [type])
+    getMovies(type);
+  }, [type]);
 
   const movieTypes = [
     {
@@ -33,7 +37,7 @@ const Home = ({
       title: 'Upcoming',
       slug: 'upcoming',
     },
-  ]
+  ];
 
   return (
     <div className="page">
@@ -45,7 +49,10 @@ const Home = ({
               <li
                 key={movieType.slug}
                 onClick={() => setType(movieType.slug)}
-                className={movieType.slug === type ? 'active' : ''}>
+                className={
+                  movieType.slug === type ? 'active' : ''
+                }
+              >
                 {movieType.title}
               </li>
             ))}
@@ -55,29 +62,33 @@ const Home = ({
           {movies
             .filter((movie) => movie.poster_path)
             .slice(5)
-            .map((movie) => (
-              <div className="movie" key={movie.id}>
-                <div className="movie-medium">
-                  <img
-                    src={`${imageBaseUrl}${imageSizes[0]}${movie.poster_path}`}
-                    alt="movies-list"
-                  />
+            .map((movie, i) => (
+              <Fade bottom duration={200 * i}>
+                <div className="movie" key={movie.id}>
+                  <div className="movie-medium">
+                    <img
+                      src={`${imageBaseUrl}${imageSizes[0]}${movie.poster_path}`}
+                      alt="movies-list"
+                    />
+                  </div>
+                  <div className="movie-info">
+                    <h2 className="movie-title">
+                      {movie.title}
+                    </h2>
+                  </div>
                 </div>
-                <div className="movie-info">
-                  <h2 className="movie-title">{movie.title}</h2>
-                </div>
-              </div>
+              </Fade>
             ))}
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = ({ reducers, movies }) => ({
   config: reducers.config,
   movies: movies.movies,
-})
+});
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -85,6 +96,9 @@ const mapDispatchToProps = (dispatch) =>
       getMovies,
     },
     dispatch
-  )
+  );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);
