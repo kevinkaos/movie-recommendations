@@ -92,7 +92,7 @@ const Home = ({
             .filter((movie) => movie.poster_path)
             .slice(5)
             .map((movie, i) => (
-              <Fade key={movie.id} bottom delay={i * 5}>
+              <Fade key={movie.id} bottom delay={i * 50}>
                 <div className="movie">
                   <Link to={`movie/${movie.id}`}>
                     <div className="movie-medium">
