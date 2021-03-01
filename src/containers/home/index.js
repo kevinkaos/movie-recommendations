@@ -15,8 +15,14 @@ const Home = ({
   movies,
   getMovies,
 }) => {
-  const [type, setType] = useState('popular');
+  const [type, setType] = useState(
+    localStorage.getItem('movieType') || 'popular'
+  );
   const history = useHistory();
+
+  useEffect(() => {
+    localStorage.removeItem('movieType');
+  }, []);
 
   useEffect(() => {
     getMovies(type);
@@ -43,7 +49,7 @@ const Home = ({
 
   return (
     <div className="page">
-      <Fade top duration={500}>
+      <Fade top delay={500}>
         <Hero
           movies={movies
             .filter((movie) => movie.backdrop_path)
@@ -56,7 +62,14 @@ const Home = ({
             {movieTypes.map((movieType) => (
               <li
                 key={movieType.slug}
-                onClick={() => setType(movieType.slug)}
+                onClick={() => {
+                  setType(movieType.slug);
+                  localStorage.setItem(
+                    'movieType',
+                    movieType.slug
+                  );
+                  return history.go(0);
+                }}
                 className={
                   movieType.slug === type ? 'active' : ''
                 }
@@ -71,7 +84,7 @@ const Home = ({
             .filter((movie) => movie.poster_path)
             .slice(5)
             .map((movie, i) => (
-              <Fade key={movie.id} bottom delay={200 * i}>
+              <Fade key={movie.id} bottom delay={100 * i}>
                 <div className="movie">
                   <div className="movie-medium">
                     <img
