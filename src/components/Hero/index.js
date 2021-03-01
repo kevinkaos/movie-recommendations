@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from 'react-slick';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './hero.scss';
@@ -52,7 +53,12 @@ const Hero = ({
             0,
             150
           )}...`}</p>
-          <div className="read-more-link">Read more</div>
+          <Link
+            to={`movie/${movie.id}`}
+            className="read-more-link"
+          >
+            Read more
+          </Link>
         </div>
       </div>
       <img

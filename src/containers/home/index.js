@@ -5,7 +5,7 @@ import Hero from '../../components/Hero';
 import { getMovies } from '../../modules/movies';
 import './home.scss';
 import Fade from 'react-reveal/Fade';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 const Home = ({
   config: {
@@ -86,17 +86,19 @@ const Home = ({
             .map((movie, i) => (
               <Fade key={movie.id} bottom delay={100 * i}>
                 <div className="movie">
-                  <div className="movie-medium">
-                    <img
-                      src={`${imageBaseUrl}${imageSizes[0]}${movie.poster_path}`}
-                      alt="movies-list"
-                    />
-                  </div>
-                  <div className="movie-info">
-                    <h2 className="movie-title">
-                      {movie.title}
-                    </h2>
-                  </div>
+                  <Link to={`movie/${movie.id}`}>
+                    <div className="movie-medium">
+                      <img
+                        src={`${imageBaseUrl}${imageSizes[0]}${movie.poster_path}`}
+                        alt="movies-list"
+                      />
+                    </div>
+                    <div className="movie-info">
+                      <h2 className="movie-title">
+                        {movie.title}
+                      </h2>
+                    </div>
+                  </Link>
                 </div>
               </Fade>
             ))}

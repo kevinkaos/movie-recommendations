@@ -6,6 +6,7 @@ import Home from '../home';
 import About from '../about';
 import Header from '../../components/Header';
 import { getConfig } from '../../modules/reducers';
+import MovieDetails from '../../components/MovieDetails';
 import '../../index.scss';
 
 const App = ({ getConfig }) => {
@@ -22,6 +23,15 @@ const App = ({ getConfig }) => {
       <div className="container">
         <Route exact path="/" component={Home} />
         <Route exact path="/about-us" component={About} />
+        <Route
+          path="/movie/:id"
+          render={(props) => (
+            <MovieDetails
+              {...props}
+              key={props.match.params.id}
+            />
+          )}
+        />
       </div>
     </div>
   );
