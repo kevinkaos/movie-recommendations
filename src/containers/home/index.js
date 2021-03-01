@@ -21,7 +21,9 @@ const Home = ({
   const [type, setType] = useState(
     localStorage.getItem('movieType') || 'popular'
   );
-  const [currentPage, setCurrentPage] = useState(page);
+  const [currentPage, setCurrentPage] = useState(
+    localStorage.getItem('currentPage') || page
+  );
 
   const history = useHistory();
 
@@ -68,12 +70,13 @@ const Home = ({
               <li
                 key={movieType.slug}
                 onClick={() => {
+                  localStorage.setItem('currentPage', 1);
+                  setCurrentPage(1);
                   setType(movieType.slug);
                   localStorage.setItem(
                     'movieType',
                     movieType.slug
                   );
-                  return history.go(0);
                 }}
                 className={
                   movieType.slug === type ? 'active' : ''
@@ -89,7 +92,7 @@ const Home = ({
             .filter((movie) => movie.poster_path)
             .slice(5)
             .map((movie, i) => (
-              <Fade key={movie.id} bottom delay={100 * i}>
+              <Fade key={movie.id} bottom delay={i * 5}>
                 <div className="movie">
                   <Link to={`movie/${movie.id}`}>
                     <div className="movie-medium">
@@ -109,7 +112,11 @@ const Home = ({
             ))}
           <Pagination
             count={total_pages}
-            onChange={(_, v) => setCurrentPage(v)}
+            page={Number(currentPage)}
+            onChange={(_, page) => {
+              setCurrentPage(page);
+              localStorage.setItem('currentPage', page);
+            }}
             size="small"
             variant="outlined"
             shape="rounded"
