@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux';
 import Home from '../home';
 import About from '../about';
 import Header from '../../components/Header';
-import { getConfig } from '../../modules/reducers';
+import { getConfig } from '../../modules/configs';
 import MovieDetails from '../../components/MovieDetails';
 import '../../index.scss';
 

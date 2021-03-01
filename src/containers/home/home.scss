@@ -55,6 +55,25 @@
       display: flex;
       flex-wrap: wrap;
 
+      .MuiPagination-root {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        .MuiPagination-ul {
+          li {
+            .Mui-selected {
+              background-color: rgba(100, 100, 100, 0.8);
+            }
+
+            button,
+            div {
+              color: white;
+            }
+          }
+        }
+      }
+
       .movie {
         flex-basis: 25%;
         position: relative;

@@ -6,6 +6,7 @@ import { getMovies } from '../../modules/movies';
 import './home.scss';
 import Fade from 'react-reveal/Fade';
 import { useHistory, Link } from 'react-router-dom';
+import Pagination from '@material-ui/lab/Pagination';
 
 const Home = ({
   config: {
@@ -14,10 +15,14 @@ const Home = ({
   },
   movies,
   getMovies,
+  pageInfo,
 }) => {
+  const { page, total_pages } = pageInfo;
   const [type, setType] = useState(
     localStorage.getItem('movieType') || 'popular'
   );
+  const [currentPage, setCurrentPage] = useState(page);
+
   const history = useHistory();
 
   useEffect(() => {
@@ -25,8 +30,8 @@ const Home = ({
   }, []);
 
   useEffect(() => {
-    getMovies(type);
-  }, [type]);
+    getMovies(type, currentPage);
+  }, [type, currentPage]);
 
   const movieTypes = [
     {
@@ -102,15 +107,23 @@ const Home = ({
                 </div>
               </Fade>
             ))}
+          <Pagination
+            count={total_pages}
+            onChange={(_, v) => setCurrentPage(v)}
+            size="small"
+            variant="outlined"
+            shape="rounded"
+          />
         </div>
       </div>
     </div>
   );
 };
 
-const mapStateToProps = ({ reducers, movies }) => ({
-  config: reducers.config,
-  movies: movies.movies,
+const mapStateToProps = ({ configs, movies }) => ({
+  config: configs.config,
+  movies: movies.all.results,
+  pageInfo: movies.all,
 });
 
 const mapDispatchToProps = (dispatch) =>

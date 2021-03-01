@@ -74,9 +74,9 @@ const Hero = ({
   );
 };
 
-const mapStateToProps = ({ reducers }) => {
+const mapStateToProps = ({ configs }) => {
   return {
-    config: reducers.config,
+    config: configs.config,
   };
 };
 
