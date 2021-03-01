@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-// import Hero from '../../components/Hero';
+import Hero from '../../components/Hero';
 import { getMovies } from '../../modules/movies';
 import './home.scss';
 import Fade from 'react-reveal/Fade';
+import { useHistory } from 'react-router-dom';
 
 const Home = ({
   config: {
@@ -15,6 +16,7 @@ const Home = ({
   getMovies,
 }) => {
   const [type, setType] = useState('popular');
+  const history = useHistory();
 
   useEffect(() => {
     getMovies(type);
@@ -41,7 +43,13 @@ const Home = ({
 
   return (
     <div className="page">
-      {/* <Hero movies={movies.slice(0, 5)} /> */}
+      <Fade top duration={500}>
+        <Hero
+          movies={movies
+            .filter((movie) => movie.backdrop_path)
+            .slice(0, 5)}
+        />
+      </Fade>
       <div className="content-section">
         <div className="movie-type">
           <ul>
@@ -63,8 +71,8 @@ const Home = ({
             .filter((movie) => movie.poster_path)
             .slice(5)
             .map((movie, i) => (
-              <Fade bottom duration={200 * i}>
-                <div className="movie" key={movie.id}>
+              <Fade key={movie.id} bottom delay={200 * i}>
+                <div className="movie">
                   <div className="movie-medium">
                     <img
                       src={`${imageBaseUrl}${imageSizes[0]}${movie.poster_path}`}

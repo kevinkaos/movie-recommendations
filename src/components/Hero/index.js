@@ -1,28 +1,39 @@
-import React from 'react'
-import Slider from 'react-slick'
-import { connect } from 'react-redux'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
-import './hero.scss'
+import React from 'react';
+import Slider from 'react-slick';
+import { connect } from 'react-redux';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './hero.scss';
 
 const HeroPrevArrow = (props) => (
-  <span onClick={props.onClick} className="slick-arrow prev material-icons">
+  <span
+    onClick={props.onClick}
+    className="slick-arrow prev material-icons"
+  >
     arrow_back_ios
   </span>
-)
+);
 
 const HeroNextArrow = (props) => (
-  <span onClick={props.onClick} className="slick-arrow next material-icons">
+  <span
+    onClick={props.onClick}
+    className="slick-arrow next material-icons"
+  >
     arrow_forward_ios
   </span>
-)
+);
 
 const Hero = ({
   movies,
-  config: { backdrop_sizes = [], secure_base_url: imageBaseUrl },
+  config: {
+    backdrop_sizes = [],
+    secure_base_url: imageBaseUrl,
+  },
 }) => {
   const imageSize =
-    window.innerWidth > 780 ? backdrop_sizes[3] : backdrop_sizes[1]
+    window.innerWidth > 780
+      ? backdrop_sizes[3]
+      : backdrop_sizes[1];
   const sliderSettings = {
     className: 'hero-container',
     dots: false,
@@ -30,14 +41,17 @@ const Hero = ({
     lazyLoad: true,
     nextArrow: <HeroNextArrow />,
     prevArrow: <HeroPrevArrow />,
-  }
+  };
 
   const slides = movies.map((movie) => (
     <div key={movie.id}>
       <div className="carousel-info-container">
         <div className="carousel-info">
           <h2 className="title">{movie.title}</h2>
-          <p className="overview">{`${movie.overview.substr(0, 150)}...`}</p>
+          <p className="overview">{`${movie.overview.substr(
+            0,
+            150
+          )}...`}</p>
           <div className="read-more-link">Read more</div>
         </div>
       </div>
@@ -46,14 +60,18 @@ const Hero = ({
         alt="movies-carousel-list"
       />
     </div>
-  ))
-  return slides.length && <Slider {...sliderSettings}>{slides}</Slider>
-}
+  ));
+  return (
+    slides.length && (
+      <Slider {...sliderSettings}>{slides}</Slider>
+    )
+  );
+};
 
 const mapStateToProps = ({ reducers }) => {
   return {
     config: reducers.config,
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(Hero)
+export default connect(mapStateToProps)(Hero);
