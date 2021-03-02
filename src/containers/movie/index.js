@@ -47,6 +47,29 @@ const Movie = ({
       <div className="details">
         <h1 className="title">{details.title}</h1>
         <h2 className="tagline">{details.tagline}</h2>
+        <div className="info">
+          <div className="overview">
+            <p>{details.overview}</p>
+          </div>
+          <div className="specific-details">
+            <div className="">
+              <span className="">Release Date:</span>
+              {details.release_date}
+            </div>
+            <div className="">
+              <span className="">Revenue:</span>$
+              {details.revenue}
+            </div>
+            <div className="">
+              <span className="">Budget:</span>$
+              {details.budget}
+            </div>
+            <div className="">
+              <span className="">Runtime:</span>
+              {details.runtime} Minutes
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
