@@ -25,7 +25,6 @@ const Header = ({ history }) => {
           </div>
           <div className="menu-item">
             <NavLink
-              exact
               to="/genres"
               className="menu-link"
               activeClassName="active"
