@@ -1,12 +1,15 @@
-import React from 'react'
-import './header.scss'
-import { NavLink, withRouter } from 'react-router-dom'
+import React from 'react';
+import './header.scss';
+import { NavLink, withRouter } from 'react-router-dom';
 
 const Header = ({ history }) => {
   return (
     <div className="header">
       <div className="navigation">
-        <button className="button material-icons" onClick={history.goBack}>
+        <button
+          className="button material-icons"
+          onClick={history.goBack}
+        >
           arrow_back
         </button>
         <div className="menu">
@@ -15,7 +18,8 @@ const Header = ({ history }) => {
               exact
               to="/"
               className="menu-link"
-              activeClassName="active">
+              activeClassName="active"
+            >
               Movies
             </NavLink>
           </div>
@@ -24,15 +28,18 @@ const Header = ({ history }) => {
               exact
               to="/about-us"
               className="menu-link"
-              activeClassName="active">
-              Genres
+              activeClassName="active"
+            >
+              TV Shows
             </NavLink>
           </div>
         </div>
-        <button className="button material-icons">search</button>
+        <button className="button material-icons">
+          search
+        </button>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default withRouter(Header)
+export default withRouter(Header);

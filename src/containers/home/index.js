@@ -5,8 +5,9 @@ import Hero from '../../components/Hero';
 import { getMovies } from '../../modules/movies';
 import './home.scss';
 import Fade from 'react-reveal/Fade';
-import { useHistory, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
+import ScrollToTop from '../../utils/scrollToTop';
 
 const Home = ({
   config: {
@@ -24,8 +25,6 @@ const Home = ({
   const [currentPage, setCurrentPage] = useState(
     localStorage.getItem('currentPage') || page
   );
-
-  const history = useHistory();
 
   useEffect(() => {
     localStorage.removeItem('movieType');
@@ -56,7 +55,8 @@ const Home = ({
 
   return (
     <div className="page">
-      <Fade top delay={500}>
+      <ScrollToTop />
+      <Fade top delay={200}>
         <Hero
           movies={movies
             .filter((movie) => movie.backdrop_path)
@@ -92,7 +92,11 @@ const Home = ({
             .filter((movie) => movie.poster_path)
             .slice(5)
             .map((movie, i) => (
-              <Fade key={movie.id} bottom delay={i * 50}>
+              <Fade
+                key={movie.id}
+                bottom
+                delay={200 + i * 50}
+              >
                 <div className="movie">
                   <Link to={`movie/${movie.id}`}>
                     <div className="movie-medium">
