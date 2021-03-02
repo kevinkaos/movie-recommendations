@@ -6,7 +6,7 @@ import Home from '../home';
 import About from '../about';
 import Header from '../../components/Header';
 import { getConfig } from '../../modules/configs';
-import MovieDetails from '../../components/MovieDetails';
+import Movie from '../movie';
 import '../../index.scss';
 
 const App = ({ getConfig }) => {
@@ -26,10 +26,7 @@ const App = ({ getConfig }) => {
         <Route
           path="/movie/:id"
           render={(props) => (
-            <MovieDetails
-              {...props}
-              key={props.match.params.id}
-            />
+            <Movie {...props} key={props.match.params.id} />
           )}
         />
       </div>

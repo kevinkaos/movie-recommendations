@@ -30,7 +30,7 @@ const Header = ({ history }) => {
               className="menu-link"
               activeClassName="active"
             >
-              TV Shows
+              Genres
             </NavLink>
           </div>
         </div>

@@ -1,0 +1,37 @@
+.movie-page {
+  position: relative;
+
+  .image-container {
+    position: absolute;
+    width: 100%;
+
+    img {
+      height: auto;
+      margin: 0 auto;
+      max-width: 100%;
+      width: 90rem;
+      opacity: 0.7;
+    }
+  }
+
+  .details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    .title {
+      margin-top: 6rem;
+      font-size: 4rem;
+      color: white;
+      z-index: 1;
+      text-shadow: 0 0 15px #000;
+    }
+
+    .tagline {
+      color: white;
+      z-index: 1;
+      text-shadow: 0 0 15px #000;
+    }
+  }
+}
