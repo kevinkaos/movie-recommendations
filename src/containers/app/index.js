@@ -1,5 +1,9 @@
 import React, { useEffect } from 'react';
-import { Route, withRouter } from 'react-router-dom';
+import {
+  Route,
+  withRouter,
+  Switch,
+} from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Home from '../home';
@@ -24,13 +28,13 @@ const App = ({ getConfig, getGenres }) => {
 
       <div className="container">
         <Route exact path="/" component={Home} />
-        <Route exact path="/genres" component={Genres} />
         <Route
           path="/movie/:id"
           render={(props) => (
             <Movie {...props} key={props.match.params.id} />
           )}
         />
+        <Route path="/genres" component={Genres} />
       </div>
     </div>
   );
