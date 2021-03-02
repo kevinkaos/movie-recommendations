@@ -8,6 +8,8 @@ import {
   getSimilar,
 } from '../../modules/movieDetails';
 import './movie.scss';
+import { Doughnut } from 'react-chartjs-2';
+import Grid from '@material-ui/core/Grid';
 
 const Movie = ({
   match: {
@@ -36,6 +38,29 @@ const Movie = ({
   const imageSize =
     window.innerWidth > 780 ? imageSizes[3] : imageSizes[1];
 
+  const options = {
+    cutoutPercentage: 75,
+    legend: {
+      display: false,
+    },
+    tooltips: {
+      enabled: false,
+    },
+  };
+
+  const data = {
+    datasets: [
+      {
+        data: [
+          details.vote_average,
+          10 - details.vote_average,
+        ],
+        backgroundColor: ['#4BF', '#000'],
+        hoverBackgroundColor: ['#4BF', '#000'],
+      },
+    ],
+  };
+
   return (
     <div className="movie-page">
       <div className="image-container">
@@ -48,27 +73,45 @@ const Movie = ({
         <h1 className="title">{details.title}</h1>
         <h2 className="tagline">{details.tagline}</h2>
         <div className="info">
-          <div className="overview">
-            <p>{details.overview}</p>
-          </div>
-          <div className="specific-details">
-            <div className="">
-              <span className="">Release Date:</span>
-              {details.release_date}
-            </div>
-            <div className="">
-              <span className="">Revenue:</span>$
-              {details.revenue}
-            </div>
-            <div className="">
-              <span className="">Budget:</span>$
-              {details.budget}
-            </div>
-            <div className="">
-              <span className="">Runtime:</span>
-              {details.runtime} Minutes
-            </div>
-          </div>
+          <Grid container xs={12}>
+            <Grid item sm={7} xs={12}>
+              <div className="overview">
+                <p>{details.overview}</p>
+              </div>
+            </Grid>
+            <Grid
+              className="specific-details"
+              item
+              sm={3}
+              xs={6}
+            >
+              <div>
+                <span>Release Date:</span>
+                {details.release_date}
+              </div>
+              <div>
+                <span>Revenue:</span>${details.revenue}
+              </div>
+              <div>
+                <span>Budget:</span>${details.budget}
+              </div>
+              <div>
+                <span>Runtime:</span>
+                {details.runtime} Minutes
+              </div>
+            </Grid>
+            <Grid
+              className="doughnut-chart-container"
+              item
+              sm={2}
+              xs={6}
+            >
+              <Doughnut data={data} options={options} />
+              <div className="score">
+                {details.vote_average}
+              </div>
+            </Grid>
+          </Grid>
         </div>
       </div>
     </div>
