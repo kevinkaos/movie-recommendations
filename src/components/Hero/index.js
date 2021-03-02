@@ -76,7 +76,7 @@ const Hero = ({
 
 const mapStateToProps = ({ configs }) => {
   return {
-    config: configs.config,
+    config: configs,
   };
 };
 

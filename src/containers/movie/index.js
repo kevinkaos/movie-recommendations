@@ -73,7 +73,7 @@ const Movie = ({
         <h1 className="title">{details.title}</h1>
         <h2 className="tagline">{details.tagline}</h2>
         <div className="info">
-          <Grid container xs={12}>
+          <Grid container>
             <Grid item sm={7} xs={12}>
               <div className="overview">
                 <p>{details.overview}</p>
@@ -119,7 +119,7 @@ const Movie = ({
 };
 
 const mapStateToProps = ({ configs, movieDetails }) => ({
-  config: configs.config,
+  config: configs,
   details: movieDetails.details,
   similarMovies: movieDetails.similarMovies,
   reviews: movieDetails.reviews,

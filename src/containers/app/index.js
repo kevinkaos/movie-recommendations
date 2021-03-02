@@ -3,15 +3,17 @@ import { Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Home from '../home';
-import About from '../about';
+import Genres from '../genres';
 import Header from '../../components/Header';
 import { getConfig } from '../../modules/configs';
+import { getGenres } from '../../modules/genres';
 import Movie from '../movie';
 import '../../index.scss';
 
-const App = ({ getConfig }) => {
+const App = ({ getConfig, getGenres }) => {
   useEffect(() => {
     getConfig();
+    getGenres();
   }, []);
 
   return (
@@ -22,7 +24,7 @@ const App = ({ getConfig }) => {
 
       <div className="container">
         <Route exact path="/" component={Home} />
-        <Route exact path="/about-us" component={About} />
+        <Route exact path="/genres" component={Genres} />
         <Route
           path="/movie/:id"
           render={(props) => (
@@ -35,7 +37,10 @@ const App = ({ getConfig }) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ getConfig }, dispatch);
+  return bindActionCreators(
+    { getConfig, getGenres },
+    dispatch
+  );
 };
 
 export default withRouter(

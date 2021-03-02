@@ -132,7 +132,7 @@ const Home = ({
 };
 
 const mapStateToProps = ({ configs, movies }) => ({
-  config: configs.config,
+  config: configs,
   movies: movies.all.results,
   pageInfo: movies.all,
 });

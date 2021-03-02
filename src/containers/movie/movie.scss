@@ -68,13 +68,16 @@
 
     .info {
       background: white;
-      box-shadow: 0 4px 15px -4px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 4px 15px -4px rgba(0, 0, 0, 0.6);
       position: relative;
       padding: 1rem;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin-top: 10rem;
+      margin-top: 6rem;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 90%;
 
       @media screen and (max-width: 768px) {
         margin-top: 4.5rem;

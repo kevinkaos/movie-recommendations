@@ -1,12 +1,12 @@
 import callApi from '../api/apis';
 
-export const GET_CONFIG = 'GET_CONFIG';
+export const GET_GENRES = 'GET_GENRES';
 
-const initialState = {};
+const initialState = [];
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case GET_CONFIG:
+    case GET_GENRES:
       return {
         ...state,
         ...action.payload,
@@ -16,12 +16,13 @@ export default (state = initialState, action) => {
   }
 };
 
-export const getConfig = () => {
+export const getGenres = () => {
   return (dispatch) => {
-    callApi.configuration.getApiConfig().then((res) => {
+    callApi.movie.getMovieGenres().then((res) => {
+      console.log(res);
       dispatch({
-        type: GET_CONFIG,
-        payload: res.data.images,
+        type: GET_GENRES,
+        payload: res.data.genres,
       });
     });
   };
