@@ -5,8 +5,8 @@ import Pagination from '@material-ui/lab/Pagination';
 import { connect } from 'react-redux';
 import './moviesList.scss';
 
-const MovieList = ({
-  movies,
+const MoviesList = ({
+  movies = [],
   config: {
     backdrop_sizes: imageSizes = [],
     secure_base_url: imageBaseUrl,
@@ -14,6 +14,8 @@ const MovieList = ({
   pageInfo,
   setCurrentPage = () => {},
   currentPage = 1,
+  pagination,
+  hero = false,
 }) => {
   const { total_pages } = pageInfo;
 
@@ -21,11 +23,11 @@ const MovieList = ({
     <div className="content-section-container">
       {movies
         .filter((movie) => movie.poster_path)
-        .slice(5)
+        .slice(hero ? 5 : 0)
         .map((movie, i) => (
           <Fade key={movie.id} bottom delay={200 + i * 50}>
             <div className="movie">
-              <Link to={`movie/${movie.id}`}>
+              <Link to={`/movie/${movie.id}`}>
                 <div className="movie-medium">
                   <img
                     src={`${imageBaseUrl}${imageSizes[0]}${movie.poster_path}`}
@@ -41,17 +43,19 @@ const MovieList = ({
             </div>
           </Fade>
         ))}
-      <Pagination
-        count={total_pages}
-        page={Number(currentPage)}
-        onChange={(_, page) => {
-          setCurrentPage(page);
-          localStorage.setItem('currentPage', page);
-        }}
-        size="small"
-        variant="outlined"
-        shape="rounded"
-      />
+      {pagination && (
+        <Pagination
+          count={total_pages}
+          page={Number(currentPage)}
+          onChange={(_, page) => {
+            setCurrentPage(page);
+            localStorage.setItem('currentPage', page);
+          }}
+          size="small"
+          variant="outlined"
+          shape="rounded"
+        />
+      )}
     </div>
   );
 };
@@ -64,4 +68,4 @@ const mapStateToProps = ({ configs, movies }) => {
   };
 };
 
-export default connect(mapStateToProps)(MovieList);
+export default connect(mapStateToProps)(MoviesList);

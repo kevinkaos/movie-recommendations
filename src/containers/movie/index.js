@@ -76,7 +76,7 @@ const Movie = ({
         <div className="info">
           <GenresList genres={details.genres} />
           <Grid container>
-            <Grid item sm={7} xs={12}>
+            <Grid item sm={6} xs={12}>
               <div className="overview">
                 <p>{details.overview}</p>
               </div>
@@ -84,7 +84,7 @@ const Movie = ({
             <Grid
               className="specific-details"
               item
-              sm={3}
+              sm={4}
               xs={6}
             >
               <div>

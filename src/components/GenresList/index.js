@@ -9,7 +9,9 @@ const GenresList = ({ genres = [] }) => {
         <div className="genres-box" key={genre.id}>
           <Link
             className="genres-link"
-            to={`/genres/${genre.id}`}
+            to={{
+              pathname: `/genres/${genre.id}`,
+            }}
           >
             {genre.name}
           </Link>

@@ -58,7 +58,7 @@
 
     &:hover {
       img {
-        opacity: 0.4;
+        opacity: 0.7;
         transform: scale(1.1);
         cursor: pointer;
       }
@@ -76,7 +76,6 @@
         height: auto;
         vertical-align: middle;
         display: block;
-        opacity: 0.7;
 
         &:hover {
           transition: transform 0.5s cubic-bezier(0.15, 1, 0.33, 1);

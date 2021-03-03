@@ -50,6 +50,11 @@ export default {
         method: 'GET',
         url: `${baseUrl}/movie/${id}/similar?api_key=${apiKey}`,
       }),
+    getMoviesByGenre: (id) =>
+      api({
+        method: 'GET',
+        url: `${baseUrl}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity&page=1&with_genres=${id}`,
+      }),
   },
   tv: {
     getTVShows: (

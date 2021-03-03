@@ -40,6 +40,8 @@ const Movies = ({ movies, getMovies, pageInfo }) => {
           setCurrentPage={setCurrentPage}
         />
         <MoviesList
+          pagination
+          hero
           setCurrentPage={setCurrentPage}
           currentPage={currentPage}
         />
