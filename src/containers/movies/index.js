@@ -12,9 +12,7 @@ const Movies = ({ movies, getMovies, pageInfo }) => {
   const [type, setType] = useState(
     localStorage.getItem('movieType') || 'popular'
   );
-  const [currentPage, setCurrentPage] = useState(
-    localStorage.getItem('currentPage') || 1
-  );
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     localStorage.removeItem('movieType');
@@ -41,8 +39,8 @@ const Movies = ({ movies, getMovies, pageInfo }) => {
         <MoviesList
           pagination
           hero
-          setCurrentPage={setCurrentPage}
           currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
         />
       </div>
     </div>

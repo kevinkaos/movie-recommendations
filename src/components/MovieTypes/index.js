@@ -28,7 +28,6 @@ const MovieTypes = ({ setType, setCurrentPage, type }) => {
           <li
             key={movieType.slug}
             onClick={() => {
-              localStorage.setItem('currentPage', 1);
               setCurrentPage(1);
               setType(movieType.slug);
               localStorage.setItem(

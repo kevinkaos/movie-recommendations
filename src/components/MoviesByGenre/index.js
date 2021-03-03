@@ -20,23 +20,17 @@ const MoviesByGenre = ({
     });
     return name;
   };
-  const [currentPage, setCurrentPage] = useState(
-    localStorage.getItem('genreCurrentPage') || 1
-  );
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    if (!localStorage.getItem('genreCurrentPage')) {
-      localStorage.setItem('genreCurrentPage', 1);
-      setCurrentPage(1);
-    } else {
-      getMoviesByGenre(match.params.id, currentPage);
-    }
+    getMoviesByGenre(match.params.id, currentPage);
   }, [match.params.id, currentPage]);
 
   return (
     <Container maxWidth="lg">
       <h1>{getGenreName(match.params.id)}</h1>
       <MoviesList
+        id={match.params.id}
         pagination
         setCurrentPage={setCurrentPage}
         currentPage={currentPage}

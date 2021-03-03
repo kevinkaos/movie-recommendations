@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Fade from 'react-reveal/Fade';
 import { Link } from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
@@ -13,11 +13,15 @@ const MoviesList = ({
   },
   pageInfo,
   setCurrentPage = () => {},
-  currentPage = 1,
   pagination = false,
   hero = false,
+  currentPage,
+  id,
 }) => {
   const { total_pages } = pageInfo;
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [id]);
 
   return (
     <div className="content-section-container">
@@ -46,11 +50,9 @@ const MoviesList = ({
       {pagination && (
         <Pagination
           count={total_pages}
-          page={Number(currentPage)}
+          page={currentPage}
           onChange={(_, page) => {
             setCurrentPage(page);
-            localStorage.setItem('currentPage', page);
-            localStorage.setItem('genreCurrentPage', page);
           }}
           size="small"
           variant="outlined"

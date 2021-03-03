@@ -12,10 +12,6 @@ const GenresList = ({ genres = [] }) => {
             to={{
               pathname: `/genres/${genre.id}`,
             }}
-            onClick={() => {
-              localStorage.removeItem('genreCurrentPage');
-              localStorage.removeItem('currentPage');
-            }}
           >
             {genre.name}
           </Link>
