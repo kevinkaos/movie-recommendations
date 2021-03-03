@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './hero.scss';
+import Fade from 'react-reveal/Fade';
 
 const HeroPrevArrow = (props) => (
   <span
@@ -69,7 +70,9 @@ const Hero = ({
   ));
   return (
     slides.length && (
-      <Slider {...sliderSettings}>{slides}</Slider>
+      <Fade top delay={200}>
+        <Slider {...sliderSettings}>{slides}</Slider>
+      </Fade>
     )
   );
 };

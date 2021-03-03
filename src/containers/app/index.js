@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import Home from '../home';
+import Movies from '../movies';
 import Genres from '../genres';
 import Header from '../../components/Header';
 import { getConfig } from '../../modules/configs';
@@ -27,7 +27,7 @@ const App = ({ getConfig, getGenres }) => {
       </header>
 
       <div className="container">
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Movies} />
         <Route
           path="/movie/:id"
           render={(props) => (
