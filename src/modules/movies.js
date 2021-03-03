@@ -33,9 +33,9 @@ export const getMovies = (type = 'popular', page = 1) => {
   };
 };
 
-export const getMoviesByGenre = (id) => {
+export const getMoviesByGenre = (id, page) => {
   return (dispatch) => {
-    callApi.movie.getMoviesByGenre(id).then((res) => {
+    callApi.movie.getMoviesByGenre(id, page).then((res) => {
       dispatch({
         type: GET_MOVIES_BY_GENRE,
         payload: res.data,

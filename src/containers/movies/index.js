@@ -9,12 +9,11 @@ import MoviesList from '../../components/MoviesList';
 import MovieTypes from '../../components/MovieTypes';
 
 const Movies = ({ movies, getMovies, pageInfo }) => {
-  const { page } = pageInfo;
   const [type, setType] = useState(
     localStorage.getItem('movieType') || 'popular'
   );
   const [currentPage, setCurrentPage] = useState(
-    localStorage.getItem('currentPage') || page
+    localStorage.getItem('currentPage') || 1
   );
 
   useEffect(() => {

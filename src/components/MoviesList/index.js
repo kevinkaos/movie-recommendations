@@ -14,7 +14,7 @@ const MoviesList = ({
   pageInfo,
   setCurrentPage = () => {},
   currentPage = 1,
-  pagination,
+  pagination = false,
   hero = false,
 }) => {
   const { total_pages } = pageInfo;
@@ -50,6 +50,7 @@ const MoviesList = ({
           onChange={(_, page) => {
             setCurrentPage(page);
             localStorage.setItem('currentPage', page);
+            localStorage.setItem('genreCurrentPage', page);
           }}
           size="small"
           variant="outlined"

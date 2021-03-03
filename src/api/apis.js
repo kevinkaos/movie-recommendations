@@ -50,32 +50,10 @@ export default {
         method: 'GET',
         url: `${baseUrl}/movie/${id}/similar?api_key=${apiKey}`,
       }),
-    getMoviesByGenre: (id) =>
+    getMoviesByGenre: (id, page = 1) =>
       api({
         method: 'GET',
-        url: `${baseUrl}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity&page=1&with_genres=${id}`,
-      }),
-  },
-  tv: {
-    getTVShows: (
-      selection = 'popular',
-      page = 1,
-      language = 'en-US',
-      region = 'US'
-    ) =>
-      api({
-        method: 'GET',
-        url: `${baseUrl}/tv/${selection}?api_key=${apiKey}&language=${language}&region=${region}&page=${page}`,
-      }),
-    getTVDetails: (tvId = 0, language = 'en-US') =>
-      api({
-        method: 'GET',
-        url: `${baseUrl}/tv/${tvId}?api_key=${apiKey}&language=${language}`,
-      }),
-    getTVGenres: () =>
-      api({
-        method: 'GET',
-        url: `${baseUrl}/genre/tv/list?api_key=${apiKey}&language=en-US`,
+        url: `${baseUrl}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&with_genres=${id}&page=${page}`,
       }),
   },
 };

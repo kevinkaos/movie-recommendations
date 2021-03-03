@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import './moviesByGenre.scss';
 import Container from '@material-ui/core/Container';
@@ -9,7 +9,6 @@ import { getMoviesByGenre } from '../../modules/movies';
 const MoviesByGenre = ({
   match,
   getMoviesByGenre,
-  movies,
   genres,
 }) => {
   const getGenreName = (genreId) => {
@@ -21,21 +20,32 @@ const MoviesByGenre = ({
     });
     return name;
   };
+  const [currentPage, setCurrentPage] = useState(
+    localStorage.getItem('genreCurrentPage') || 1
+  );
 
   useEffect(() => {
-    getMoviesByGenre(match.params.id);
-  }, [match.params.id]);
+    if (!localStorage.getItem('genreCurrentPage')) {
+      localStorage.setItem('genreCurrentPage', 1);
+      setCurrentPage(1);
+    } else {
+      getMoviesByGenre(match.params.id, currentPage);
+    }
+  }, [match.params.id, currentPage]);
 
   return (
     <Container maxWidth="lg">
       <h1>{getGenreName(match.params.id)}</h1>
-      <MoviesList movies={movies} />
+      <MoviesList
+        pagination
+        setCurrentPage={setCurrentPage}
+        currentPage={currentPage}
+      />
     </Container>
   );
 };
 
-const mapStateToProps = ({ movies, genres }) => ({
-  movies: movies.all.results,
+const mapStateToProps = ({ genres }) => ({
   genres: genres.genres,
 });
 

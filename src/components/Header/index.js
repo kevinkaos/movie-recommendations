@@ -19,6 +19,10 @@ const Header = ({ history }) => {
               to="/"
               className="menu-link"
               activeClassName="active"
+              onClick={() => {
+                localStorage.removeItem('currentPage');
+                localStorage.removeItem('genreCurrentPage');
+              }}
             >
               Movies
             </NavLink>
@@ -28,6 +32,10 @@ const Header = ({ history }) => {
               to="/genres"
               className="menu-link"
               activeClassName="active"
+              onClick={() => {
+                localStorage.removeItem('currentPage');
+                localStorage.removeItem('genreCurrentPage');
+              }}
             >
               Genres
             </NavLink>
