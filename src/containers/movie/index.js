@@ -10,6 +10,7 @@ import {
 import './movie.scss';
 import { Doughnut } from 'react-chartjs-2';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 import GenresList from '../../components/GenresList';
 
 const Movie = ({
@@ -23,7 +24,7 @@ const Movie = ({
   details,
   similarMovies,
   reviews,
-  credits,
+  credits: { cast = [] },
   getDetails,
   getReviews,
   getCredits,
@@ -114,6 +115,33 @@ const Movie = ({
               </div>
             </Grid>
           </Grid>
+        </div>
+        <div className="cast-section">
+          <h2 className="cast-title">Cast</h2>
+          <Container
+            className="cast-container"
+            maxWidth="md"
+          >
+            {cast
+              .slice(0, 6)
+              .filter((e) => e.profile_path)
+              .map((castMember) => {
+                return (
+                  <Grid className="cast-item" xs={2}>
+                    <img
+                      src={`${imageBaseUrl}w264_and_h264_bestv2${castMember.profile_path}`}
+                      alt="cast image"
+                    />
+                    <div className="cast-name">
+                      {castMember.name}
+                    </div>
+                    <div className="cast-character">
+                      {castMember.character}
+                    </div>
+                  </Grid>
+                );
+              })}
+          </Container>
         </div>
       </div>
     </div>

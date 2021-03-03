@@ -25,7 +25,7 @@ export const getDetails = (id) => {
 
 export const getReviews = (id) => {
   return (dispatch) => {
-    callApi.movie.getMovieCredits(id).then((res) => {
+    callApi.movie.getMovieReviews(id).then((res) => {
       dispatch({
         type: GET_REVIEWS,
         payload: res.data,
@@ -36,7 +36,7 @@ export const getReviews = (id) => {
 
 export const getCredits = (id) => {
   return (dispatch) => {
-    callApi.movie.getMovieReviews(id).then((res) => {
+    callApi.movie.getMovieCredits(id).then((res) => {
       dispatch({
         type: GET_CREDITS,
         payload: res.data,
