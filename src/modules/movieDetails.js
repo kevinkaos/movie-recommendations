@@ -3,11 +3,9 @@ import callApi from '../api/apis';
 export const GET_DETAILS = 'GET_DETAILS';
 export const GET_REVIEWS = 'GET_REVIEWS';
 export const GET_CREDITS = 'GET_CREDITS';
-export const GET_SIMILAR = 'GET_SIMILAR';
 
 const initialState = {
   details: [],
-  similarMovies: [],
   reviews: [],
   credits: [],
 };
@@ -45,17 +43,6 @@ export const getCredits = (id) => {
   };
 };
 
-export const getSimilar = (id) => {
-  return (dispatch) => {
-    callApi.movie.getMovieSimilar(id).then((res) => {
-      dispatch({
-        type: GET_SIMILAR,
-        payload: res.data,
-      });
-    });
-  };
-};
-
 export default (state = initialState, action) => {
   switch (action.type) {
     case GET_DETAILS:
@@ -72,11 +59,6 @@ export default (state = initialState, action) => {
       return {
         ...state,
         credits: action.payload,
-      };
-    case GET_SIMILAR:
-      return {
-        ...state,
-        similarMovies: action.payload,
       };
     default:
       return state;

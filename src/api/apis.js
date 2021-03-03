@@ -8,11 +8,6 @@ export default {
         method: 'GET',
         url: `${baseUrl}/configuration?api_key=${apiKey}`,
       }),
-    getConfigs: (type = 'countries') =>
-      api({
-        method: 'GET',
-        url: `${baseUrl}/configuration/${type}?api_key=${apiKey}`,
-      }),
   },
   movie: {
     getMovies: (
