@@ -19,6 +19,7 @@ import 'swiper/components/navigation/navigation.scss';
 import 'swiper/components/pagination/pagination.scss';
 import 'swiper/components/scrollbar/scrollbar.scss';
 import SwiperCore, { Navigation } from 'swiper';
+import ScrollToTop from '../../utils/scrollToTop';
 
 SwiperCore.use([Navigation]);
 
@@ -73,6 +74,7 @@ const Movie = ({
 
   return (
     <div className="movie-page">
+      <ScrollToTop />
       <div className="image-container">
         <img
           src={`${imageBaseUrl}/${imageSize}/${details.backdrop_path}`}
