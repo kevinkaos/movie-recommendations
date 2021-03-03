@@ -8,7 +8,7 @@ import ScrollToTop from '../../utils/scrollToTop';
 import MoviesList from '../../components/MoviesList';
 import MovieTypes from '../../components/MovieTypes';
 
-const Movies = ({ movies, getMovies, pageInfo }) => {
+const Movies = ({ movies, getMovies }) => {
   const [type, setType] = useState(
     localStorage.getItem('movieType') || 'popular'
   );
@@ -49,7 +49,6 @@ const Movies = ({ movies, getMovies, pageInfo }) => {
 
 const mapStateToProps = ({ movies }) => ({
   movies: movies.all.results,
-  pageInfo: movies.all,
 });
 
 const mapDispatchToProps = (dispatch) =>

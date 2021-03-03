@@ -38,6 +38,7 @@ const Movie = ({
   getReviews,
   getCredits,
   getMoviesSimilar,
+  movies,
 }) => {
   useEffect(() => {
     getDetails(id);
@@ -186,22 +187,29 @@ const Movie = ({
             </Container>
           </div>
         )}
-        <div className="similar-movies-section">
-          <h2>Similar Movies</h2>
-          <Container maxWidth="md">
-            <MoviesList />
-          </Container>
-        </div>
+        {movies && movies.length && (
+          <div className="similar-movies-section">
+            <h2>Similar Movies</h2>
+            <Container maxWidth="md">
+              <MoviesList />
+            </Container>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
-const mapStateToProps = ({ configs, movieDetails }) => ({
+const mapStateToProps = ({
+  configs,
+  movieDetails,
+  movies,
+}) => ({
   config: configs,
   details: movieDetails.details,
   reviews: movieDetails.reviews.results,
   credits: movieDetails.credits,
+  movies: movies.all.results,
 });
 
 const mapDispatchToProps = (dispatch) =>
