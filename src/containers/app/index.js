@@ -12,6 +12,7 @@ import Header from '../../components/Header';
 import { getConfig } from '../../modules/configs';
 import { getGenres } from '../../modules/genres';
 import Movie from '../movie';
+import Person from '../person';
 import '../../index.scss';
 
 const App = ({ getConfig, getGenres }) => {
@@ -32,6 +33,15 @@ const App = ({ getConfig, getGenres }) => {
           path="/movie/:id"
           render={(props) => (
             <Movie {...props} key={props.match.params.id} />
+          )}
+        />
+        <Route
+          path="/person/:id"
+          render={(props) => (
+            <Person
+              {...props}
+              key={props.match.params.id}
+            />
           )}
         />
         <Route path="/genres" component={Genres} />

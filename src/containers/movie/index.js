@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   getDetails,
   getReviews,
@@ -139,13 +140,15 @@ const Movie = ({
                 .map((castMember) => {
                   return (
                     <SwiperSlide
-                      key={castMember.profile_path}
+                      key={castMember.id}
                       className="cast-item"
                     >
-                      <img
-                        src={`${imageBaseUrl}w264_and_h264_bestv2${castMember.profile_path}`}
-                        alt="cast image"
-                      />
+                      <Link to={`/person/${castMember.id}`}>
+                        <img
+                          src={`${imageBaseUrl}w264_and_h264_bestv2${castMember.profile_path}`}
+                          alt="cast image"
+                        />
+                      </Link>
                       <div className="cast-name">
                         {castMember.name}
                       </div>
