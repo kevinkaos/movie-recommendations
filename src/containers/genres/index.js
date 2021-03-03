@@ -10,7 +10,7 @@ const Genres = ({ genres }) => {
   let { path } = useRouteMatch();
 
   return (
-    <Container className="genres-container" maxWidth="lg">
+    <Container maxWidth="lg">
       <GenresList genres={genres} />
       <Route
         path={`${path}/:id`}

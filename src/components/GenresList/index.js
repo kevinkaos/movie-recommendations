@@ -4,7 +4,7 @@ import './genresList.scss';
 
 const GenresList = ({ genres }) => {
   return (
-    <>
+    <div className="genres-container">
       {genres.map((genre) => (
         <div className="genres-box" key={genre.id}>
           <Link
@@ -18,7 +18,7 @@ const GenresList = ({ genres }) => {
           />
         </div>
       ))}
-    </>
+    </div>
   );
 };
 
