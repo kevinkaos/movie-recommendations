@@ -45,7 +45,7 @@ export default {
         method: 'GET',
         url: `${baseUrl}/movie/${id}/reviews?api_key=${apiKey}`,
       }),
-    getMovieSimilar: (id) =>
+    getMoviesSimilar: (id) =>
       api({
         method: 'GET',
         url: `${baseUrl}/movie/${id}/similar?api_key=${apiKey}`,

@@ -5,13 +5,22 @@ import {
   getDetails,
   getReviews,
   getCredits,
-  getSimilar,
 } from '../../modules/movieDetails';
+import { getMoviesSimilar } from '../../modules/movies';
 import './movie.scss';
 import { Doughnut } from 'react-chartjs-2';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import GenresList from '../../components/GenresList';
+import MoviesList from '../../components/MoviesList';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper.scss';
+import 'swiper/components/navigation/navigation.scss';
+import 'swiper/components/pagination/pagination.scss';
+import 'swiper/components/scrollbar/scrollbar.scss';
+import SwiperCore, { Navigation } from 'swiper';
+
+SwiperCore.use([Navigation]);
 
 const Movie = ({
   match: {
@@ -22,19 +31,18 @@ const Movie = ({
     secure_base_url: imageBaseUrl,
   },
   details,
-  similarMovies,
   reviews,
   credits: { cast = [] },
   getDetails,
   getReviews,
   getCredits,
-  getSimilar,
+  getMoviesSimilar,
 }) => {
   useEffect(() => {
     getDetails(id);
     getReviews(id);
     getCredits(id);
-    getSimilar(id);
+    getMoviesSimilar(id);
   }, []);
 
   const imageSize =
@@ -122,25 +130,64 @@ const Movie = ({
             className="cast-container"
             maxWidth="md"
           >
-            {cast
-              .slice(0, 6)
-              .filter((e) => e.profile_path)
-              .map((castMember) => {
-                return (
-                  <Grid className="cast-item" xs={2}>
-                    <img
-                      src={`${imageBaseUrl}w264_and_h264_bestv2${castMember.profile_path}`}
-                      alt="cast image"
-                    />
-                    <div className="cast-name">
-                      {castMember.name}
-                    </div>
-                    <div className="cast-character">
-                      {castMember.character}
-                    </div>
-                  </Grid>
-                );
-              })}
+            <Swiper navigation slidesPerView={3}>
+              {cast
+                .filter((e) => e.profile_path)
+                .map((castMember) => {
+                  return (
+                    <SwiperSlide
+                      key={castMember.profile_path}
+                      className="cast-item"
+                    >
+                      <img
+                        src={`${imageBaseUrl}w264_and_h264_bestv2${castMember.profile_path}`}
+                        alt="cast image"
+                      />
+                      <div className="cast-name">
+                        {castMember.name}
+                      </div>
+                      <div className="cast-character">
+                        {castMember.character}
+                      </div>
+                    </SwiperSlide>
+                  );
+                })}
+            </Swiper>
+          </Container>
+        </div>
+        {reviews && reviews.length > 0 && (
+          <div className="reviews-section">
+            <h2>Reviews</h2>
+            <Container
+              className="reviews-container"
+              maxWidth="md"
+            >
+              <Swiper navigation slidesPerView={1}>
+                {reviews.map((review) => (
+                  <SwiperSlide
+                    key={review.id}
+                    className="review-item"
+                  >
+                    <h3 className="review-author">
+                      {review.author}
+                    </h3>
+                    <p className="review-text">
+                      {`${review.content.substr(
+                        0,
+                        300
+                      )}...`}
+                      <a href={review.url}>Read more</a>
+                    </p>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </Container>
+          </div>
+        )}
+        <div className="similar-movies-section">
+          <h2>Similar Movies</h2>
+          <Container maxWidth="md">
+            <MoviesList />
           </Container>
         </div>
       </div>
@@ -151,8 +198,7 @@ const Movie = ({
 const mapStateToProps = ({ configs, movieDetails }) => ({
   config: configs,
   details: movieDetails.details,
-  similarMovies: movieDetails.similarMovies,
-  reviews: movieDetails.reviews,
+  reviews: movieDetails.reviews.results,
   credits: movieDetails.credits,
 });
 
@@ -162,7 +208,7 @@ const mapDispatchToProps = (dispatch) =>
       getDetails,
       getReviews,
       getCredits,
-      getSimilar,
+      getMoviesSimilar,
     },
     dispatch
   );
