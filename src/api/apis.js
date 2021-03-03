@@ -51,4 +51,16 @@ export default {
         url: `${baseUrl}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&with_genres=${id}&page=${page}`,
       }),
   },
+  person: {
+    getPersonDetails: (id) =>
+      api({
+        method: 'GET',
+        url: `${baseUrl}/person/${id}?api_key=${apiKey}&language=en-US`,
+      }),
+    getPersonMovies: (id) =>
+      api({
+        method: 'GET',
+        url: `${baseUrl}/person/${id}/movie_credits?api_key=${apiKey}&language=en-US`,
+      }),
+  },
 };

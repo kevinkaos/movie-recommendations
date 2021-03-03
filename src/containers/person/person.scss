@@ -1,0 +1,58 @@
+.person-container {
+  .person-inner {
+    display: flex;
+    padding-top: 1rem;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    .person-image {
+      display: flex;
+      justify-content: center;
+
+      img {
+        width: 300px;
+        height: 480px;
+        border-radius: 10%;
+      }
+    }
+
+    .person-details {
+      margin-left: 1rem;
+      color: white;
+
+      .person-name {
+        font-size: 32px;
+        margin-bottom: 30px;
+      }
+
+      .person-item {
+        font-size: 15px;
+        color: #fff;
+        margin-bottom: 30px;
+      }
+
+      .person-biography {
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 300;
+        margin-bottom: 30px;
+      }
+
+      span {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 12px;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.related-movies {
+  .related-movies-title {
+    color: white;
+    text-align: center;
+  }
+}

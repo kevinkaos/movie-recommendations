@@ -3,6 +3,7 @@ import callApi from '../api/apis';
 export const GET_MOVIES = 'GET_MOVIES';
 export const GET_MOVIES_BY_GENRE = 'GET_MOVIES_BY_GENRE';
 export const GET_MOVIES_SIMILAR = 'GET_MOVIES_SIMILAR';
+export const GET_PERSON_MOVIES = 'GET_PERSON_MOVIES';
 
 const initialState = { all: { results: [] } };
 
@@ -22,6 +23,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         all: action.payload,
+      };
+    case GET_PERSON_MOVIES:
+      return {
+        ...state,
+        all: { results: action.payload },
       };
     default:
       return state;
@@ -56,6 +62,17 @@ export const getMoviesSimilar = (id) => {
       dispatch({
         type: GET_MOVIES_SIMILAR,
         payload: res.data,
+      });
+    });
+  };
+};
+
+export const getPersonMovies = (id) => {
+  return (dispatch) => {
+    callApi.person.getPersonMovies(id).then((res) => {
+      dispatch({
+        type: GET_PERSON_MOVIES,
+        payload: res.data.cast,
       });
     });
   };

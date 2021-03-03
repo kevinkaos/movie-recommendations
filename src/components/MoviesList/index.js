@@ -18,7 +18,7 @@ const MoviesList = ({
   currentPage,
   id,
 }) => {
-  const { total_pages } = pageInfo;
+  const { total_pages = 0 } = pageInfo;
   useEffect(() => {
     setCurrentPage(1);
   }, [id]);
@@ -29,7 +29,7 @@ const MoviesList = ({
         .filter((movie) => movie.poster_path)
         .slice(hero ? 5 : 0)
         .map((movie, i) => (
-          <Fade key={movie.id} bottom delay={200 + i * 50}>
+          <Fade key={movie.id} bottom delay={i * 50}>
             <div className="movie">
               <Link to={`/movie/${movie.id}`}>
                 <div className="movie-medium">
