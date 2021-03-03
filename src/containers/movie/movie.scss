@@ -133,8 +133,14 @@
         justify-content: center;
         align-items: center;
 
+        canvas {
+          width: 200px !important;
+          height: 100px !important;
+        }
+
         .score {
           position: absolute;
+          font-size: 1.5rem;
         }
       }
     }

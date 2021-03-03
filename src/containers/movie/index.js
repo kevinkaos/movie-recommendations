@@ -10,6 +10,7 @@ import {
 import './movie.scss';
 import { Doughnut } from 'react-chartjs-2';
 import Grid from '@material-ui/core/Grid';
+import GenresList from '../../components/GenresList';
 
 const Movie = ({
   match: {
@@ -73,6 +74,7 @@ const Movie = ({
         <h1 className="title">{details.title}</h1>
         <h2 className="tagline">{details.tagline}</h2>
         <div className="info">
+          <GenresList genres={details.genres} />
           <Grid container>
             <Grid item sm={7} xs={12}>
               <div className="overview">

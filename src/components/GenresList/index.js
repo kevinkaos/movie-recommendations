@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './genresList.scss';
 
-const GenresList = ({ genres }) => {
+const GenresList = ({ genres = [] }) => {
   return (
     <div className="genres-container">
       {genres.map((genre) => (
