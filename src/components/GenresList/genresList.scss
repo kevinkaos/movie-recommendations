@@ -4,6 +4,10 @@
   justify-content: center;
   padding: 1rem;
 
+  &.small {
+    padding: 0;
+  }
+
   .genres-box {
     font-weight: 400;
     margin: 0 0.3rem 0.3rem 0;

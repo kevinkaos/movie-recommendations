@@ -52,7 +52,10 @@ const Header = ({ history }) => {
         </div>
       </div>
       {isShowSearchBox && (
-        <SearchBox show={isShowSearchBox} />
+        <SearchBox
+          show={isShowSearchBox}
+          toggleSearchBox={toggleSearchBox}
+        />
       )}
     </div>
   );

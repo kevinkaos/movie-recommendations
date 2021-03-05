@@ -1,10 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './genresList.scss';
+import classNames from 'classnames';
 
-const GenresList = ({ genres = [] }) => {
+const GenresList = ({ genres = [], small }) => {
   return (
-    <div className="genres-container">
+    <div
+      className={classNames('genres-container', {
+        small: small,
+      })}
+    >
       {genres.map((genre) => (
         <div className="genres-box" key={genre.id}>
           <Link

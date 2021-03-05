@@ -6,7 +6,12 @@ import SearchBoxResults from '../SearchBoxResults';
 import './searchBox.scss';
 import { connect } from 'react-redux';
 
-const SearchBox = ({ show, genres, config }) => {
+const SearchBox = ({
+  show,
+  genres,
+  config,
+  toggleSearchBox,
+}) => {
   const [searchResults, setSearchResults] = useState([]);
   const [query, setQuery] = useState('');
 
@@ -52,6 +57,7 @@ const SearchBox = ({ show, genres, config }) => {
               genres={genres}
               results={searchResults}
               config={config}
+              toggleSearchBox={toggleSearchBox}
             />
           )}
         </div>
