@@ -17,6 +17,10 @@
         padding: 0.4rem 1rem;
         font-weight: 600;
 
+        @media screen and (max-width: 375px) {
+          padding: 0.2rem 0.5rem;
+        }
+
         .menu-link {
           color: rgba($color: white, $alpha: 0.5);
           text-decoration: none;
@@ -24,8 +28,16 @@
           position: relative;
           padding-bottom: 0.6rem;
 
+          @media screen and (max-width: 375px) {
+            padding-bottom: 0.3rem;
+          }
+
           &:hover {
             color: rgba($color: white, $alpha: 0.75);
+          }
+
+          @media screen and (max-width: 375px) {
+            font-size: small;
           }
 
           &::before {
