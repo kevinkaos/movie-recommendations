@@ -18,15 +18,28 @@
     flex-wrap: wrap;
     overflow: hidden;
 
+    @media screen and (max-width: 375px) {
+      padding: 0.15rem 0.5rem 0.15rem 0.15rem;
+    }
+
     .title {
       font-weight: 400;
       font-size: 0.85rem;
       margin: 0 0.5rem 0.5rem 0;
+
+      @media screen and (max-width: 375px) {
+        font-size: 0.65rem;
+        margin: 0 0.5rem;
+      }
     }
 
     .date {
       margin-right: 0.5rem;
       font-size: 1rem;
+
+      @media screen and (max-width: 375px) {
+        font-size: 0.65rem;
+      }
     }
 
     .overview {
@@ -37,6 +50,11 @@
       display: block;
       white-space: nowrap;
       overflow: hidden;
+
+      @media screen and (max-width: 375px) {
+        font-size: 0.65rem;
+        margin: 0;
+      }
     }
   }
 }

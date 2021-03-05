@@ -1,0 +1,21 @@
+.footer {
+  background: #2b2b2a;
+  width: 100%;
+  padding: 0.5rem 0 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+
+  .tmdb {
+    display: block;
+    width: 6rem;
+    margin-right: 2rem;
+  }
+
+  .github {
+    display: block;
+    width: 5rem;
+  }
+}

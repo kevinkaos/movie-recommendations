@@ -26,10 +26,12 @@ const SearchBoxResults = ({
         className="result"
         key={result.id}
       >
-        <img
-          src={`${imageBaseUrl}${imageSizes[0]}/${result.poster_path}`}
-          alt=""
-        />
+        <div className="image-container">
+          <img
+            src={`${imageBaseUrl}${imageSizes[0]}/${result.poster_path}`}
+            alt=""
+          />
+        </div>
         <div className="info-container">
           <span className="title">{result.title}</span>
           <span className="date">{`(${result.release_date})`}</span>
