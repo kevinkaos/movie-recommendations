@@ -26,7 +26,6 @@ const SearchBoxResults = ({
         to={`/movie/${result.id}`}
         className="result"
         key={result.id}
-        onClick={() => toggleSearchBox()}
       >
         <img
           src={`${imageBaseUrl}${imageSizes[0]}/${result.poster_path}`}

@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import Container from '@material-ui/core/Container';
 import callApi from '../../api/apis';
 import SearchBoxResults from '../SearchBoxResults';
 import './searchBox.scss';
 import { connect } from 'react-redux';
+import useOutsideClick from '../../utils/useOutsideClick';
 
 const SearchBox = ({
   show,
@@ -14,6 +15,7 @@ const SearchBox = ({
 }) => {
   const [searchResults, setSearchResults] = useState([]);
   const [query, setQuery] = useState('');
+  const inputRef = useRef(null);
 
   const getMoviesFromQuery = (query) => {
     if (query === '' || query.trim === '' || !query) {
@@ -29,6 +31,10 @@ const SearchBox = ({
     getMoviesFromQuery(query);
   }, [query]);
 
+  useOutsideClick(inputRef, () => {
+    toggleSearchBox();
+  });
+
   return (
     <div
       className={classNames('search-box', { show: show })}
@@ -37,19 +43,20 @@ const SearchBox = ({
         maxWidth="md"
         className="search-box-container"
       >
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <input
+            autoComplete="off"
             placeholder="Search for movies..."
             className="search-box-input"
             type="text"
             id="search-box"
             onChange={(e) => setQuery(e.target.value)}
+            ref={inputRef}
           />
         </form>
         <div
           className={classNames('search-box-results', {
             show: show,
-            'no-result': false,
           })}
         >
           {config && (

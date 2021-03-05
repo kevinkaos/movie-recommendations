@@ -1,6 +1,6 @@
 {
-  "short_name": "React + Redux App",
-  "name": "Create React App Redux",
+  "short_name": "Movies React App",
+  "name": "Create React App Redux and Router",
   "icons": [
     {
       "src": "favicon.ico",
