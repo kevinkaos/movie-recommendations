@@ -64,7 +64,6 @@ const SearchBox = ({
               genres={genres}
               results={searchResults}
               config={config}
-              toggleSearchBox={toggleSearchBox}
             />
           )}
         </div>
