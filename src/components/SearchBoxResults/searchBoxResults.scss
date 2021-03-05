@@ -1,0 +1,42 @@
+.result {
+  border-bottom: 1px solid #eee;
+  display: flex;
+  text-decoration: none;
+  color: black;
+  transition: height 0.3s ease-in-out;
+  overflow: hidden;
+
+  &:hover {
+    background: gray;
+    color: white;
+  }
+
+  .info-container {
+    padding: 0.5rem 1rem 0.5rem 0.5rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    overflow: hidden;
+
+    .title {
+      font-weight: 400;
+      font-size: 0.85rem;
+      margin: 0 0.5rem 0.5rem 0;
+    }
+
+    .date {
+      margin-right: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .overview {
+      flex-basis: 100%;
+      font-size: 0.8rem;
+      margin-top: 0.4rem;
+      text-overflow: ellipsis;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+}
