@@ -10,7 +10,6 @@ const SearchBoxResults = ({
   },
   results = [],
   genres,
-  toggleSearchBox,
 }) => {
   return results.map((result) => {
     const genreList = genres.reduce((arr, curr) => {
