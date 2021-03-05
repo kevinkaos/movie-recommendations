@@ -51,7 +51,9 @@ const Header = ({ history }) => {
           </button>
         </div>
       </div>
-      <SearchBox show={isShowSearchBox} />
+      {isShowSearchBox && (
+        <SearchBox show={isShowSearchBox} />
+      )}
     </div>
   );
 };

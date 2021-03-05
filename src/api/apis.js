@@ -50,7 +50,7 @@ export default {
         method: 'GET',
         url: `${baseUrl}/discover/movie?api_key=${apiKey}&language=en-US&sort_by=popularity.desc&with_genres=${id}&page=${page}`,
       }),
-    searchMovie: (query) =>
+    searchMovie: (query = '') =>
       api({
         method: 'GET',
         url: `${baseUrl}/search/movie?api_key=${apiKey}&language=en-US&query=${query}&page=1`,

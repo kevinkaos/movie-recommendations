@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import Container from '@material-ui/core/Container';
 import callApi from '../../api/apis';
@@ -7,6 +7,23 @@ import './searchBox.scss';
 import { connect } from 'react-redux';
 
 const SearchBox = ({ show, genres, config }) => {
+  const [searchResults, setSearchResults] = useState([]);
+  const [query, setQuery] = useState('');
+
+  const getMoviesFromQuery = (query) => {
+    if (query === '' || query.trim === '' || !query) {
+      return;
+    }
+
+    callApi.movie.searchMovie(query).then((res) => {
+      setSearchResults(res.data.results);
+    });
+  };
+
+  useEffect(() => {
+    getMoviesFromQuery(query);
+  }, [query]);
+
   return (
     <div
       className={classNames('search-box', { show: show })}
@@ -17,12 +34,11 @@ const SearchBox = ({ show, genres, config }) => {
       >
         <form>
           <input
-            placeholder="Search for movie..."
+            placeholder="Search for movies..."
             className="search-box-input"
             type="text"
             id="search-box"
-            // onChange={this.handleChange}
-            // ref={this.textInput}
+            onChange={(e) => setQuery(e.target.value)}
           />
         </form>
         <div
@@ -34,9 +50,8 @@ const SearchBox = ({ show, genres, config }) => {
           {config && (
             <SearchBoxResults
               genres={genres}
-              // searchResults={this.state.searchResults}
+              results={searchResults}
               config={config}
-              // toggleSearchBox={this.props.toggleSearchBox}
             />
           )}
         </div>
@@ -46,7 +61,7 @@ const SearchBox = ({ show, genres, config }) => {
 };
 
 const mapStateToProps = ({ configs, genres }) => ({
-  config: configs.config,
+  config: configs,
   genres: genres.genres,
 });
 
